@@ -280,6 +280,7 @@ bin_centers = np.array(bounds[:-1]) + np.diff(bounds) / 2
 cbar = fig.colorbar(im, ax=ax)
 cbar.set_ticks(bin_centers)
 cbar.set_ticklabels(list(codings.keys()))
+cbar.ax.tick_params(axis='y', which='minor', length=0)
 
 cbar.set_label('Categories')
 ax.set_title("Categorical Colormapping using BoundaryNorm")
