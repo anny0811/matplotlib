@@ -7,17 +7,15 @@
 Transformations Tutorial
 ========================
 
-Like any graphics packages, Matplotlib is built on top of a transformation
-framework to easily move between coordinate systems, the userland *data*
-coordinate system, the *axes* coordinate system, the *figure* coordinate
-system, and the *display* coordinate system.  In 95% of your plotting, you
-won't need to think about this, as it happens under the hood, but as you push
-the limits of custom figure generation, it helps to have an understanding of
-these objects, so you can reuse the existing transformations Matplotlib makes
-available to you, or create your own (see :mod:`matplotlib.transforms`).  The
-table below summarizes some useful coordinate systems, a description of each
-system, and the transformation object for going from each coordinate system to
-the *display* coordinates.  In the "Transformation Object" column, ``ax`` is a
+Like most graphics packages, Matplotlib relise on a transformation
+framework to coordinate systems. This framework allows you to move 
+seamlessly between the *data*, *axes*, *figure*, *display* coordinate systems.
+While Marplotlib handles these transformations automatically for 95% of your
+plots, understanding the underlying objects is crucial when you need to push
+the limits of custom figure generation of create advanced designs
+(see :mod:`matplotlib.transforms`). The table below summarizes these
+coordinate systems and the corresponding transformation objects used to map
+them to the *display* (pixel) coordinates. In this table, `ax` represents an
 :class:`~matplotlib.axes.Axes` instance, ``fig`` is a
 :class:`~matplotlib.figure.Figure` instance, and ``subfigure`` is a
 :class:`~matplotlib.figure.SubFigure` instance.
@@ -69,34 +67,52 @@ the *display* coordinates.  In the "Transformation Object" column, ``ax`` is a
 |                |pixels, and SVG/PDF use points.    |                             |
 +----------------+-----------------------------------+-----------------------------+
 
-The `~matplotlib.transforms.Transform` objects are naive to the source and
-destination coordinate systems, however the objects referred to in the table
-above are constructed to take inputs in their coordinate system, and transform
-the input to the *display* coordinate system.  That is why the *display*
-coordinate system has `None` for the "Transformation Object" column -- it
-already is in *display* coordinates.  The naming and destination conventions
-are an aid to keeping track of the available "standard" coordinate systems and
-transforms.
+Transforms in Matplotlib
+------------------------
+- **Transform objects** themselves are naive to the source and destination coordinate systems.
+- However, the transform objects listed in the table are designed to:
+   - Accept inputs in their specific coordinate system.
+   - Convert those inputs into the **display coordinate system**.
+- The **display coordinate system** has ``None`` in the *Transform Object* 
+column because:
+  - It is already in display coordinates. 
+  - No additional transform is required.
+- The naming conventions for transforms help keep track of the standard coordinate systems
+and their relationships.
 
-The transformations also know how to invert themselves (via
-`.Transform.inverted`) to generate a transform from output coordinate system
-back to the input coordinate system.  For example, ``ax.transData`` converts
-values in data coordinates to display coordinates and
-``ax.transData.inverted()`` is a :class:`matplotlib.transforms.Transform` that
-goes from display coordinates to data coordinates. This is particularly useful
-when processing events from the user interface, which typically occur in
-display space, and you want to know where the mouse click or key-press occurred
-in your *data* coordinate system.
+Inverting Transforms
+--------------------
+- Transforms in Matplotlib can invert themselves using ``Transform.inverted()``.
+- Example:
+- ``ax.transData``
+    Converts **data coordinates → display coordinates**.
+- ``ax.transData.inverted()``
+     Converts **display coordinates → data coordinates**.
+- This is especially useful when working with user interface events, such as:
+ - Mouse clicks
+ - Key presses
+- UI events usually occur in display coordinates, but developers often need to determine the
+corresponding position in data coordinates.
 
-Note that specifying the position of Artists in *display* coordinates may
-change their relative location if the ``dpi`` or size of the figure changes.
-This can cause confusion when printing or changing screen resolution, because
-the object can change location and size.  Therefore, it is most common for
-artists placed in an Axes or figure to have their transform set to something
-*other* than the `~.transforms.IdentityTransform()`; the default when an artist
-is added to an Axes using `~.axes.Axes.add_artist` is for the transform to be
-``ax.transData`` so that you can work and think in *data* coordinates and let
-Matplotlib take care of the transformation to *display*.
+Important Note About Display Coordinates
+----------------------------------------
+- When an artist's position is specified in **display coordinates**:
+- Its relative location may change if the **figure size or DPI change**.
+- This can lead to unexpected changes when:
+    - Printing a figure
+    - Changing screen resolution
+- Because of this, artists inside an **Axes** or **Figure** usually use a different transform
+instead of ``IdentityTransform()``.
+
+Key Takeaways
+-------------
+- Transform objects convert coordinates between different coordinate systems.
+- ``ax.transData`` converts **data → display coordinates**.
+- ``Transform.inverted()`` allows reverse transforms.
+- UI events usually occur in display coordinates, so inversion helps map them
+to data coordinates.
+- Most artists use data coordinates (``ax.transData``) so that Matplotlib handles
+display transforms automatically.
 
 .. _data-coords:
 
