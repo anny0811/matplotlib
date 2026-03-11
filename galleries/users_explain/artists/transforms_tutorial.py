@@ -4,10 +4,10 @@
 .. _transforms_tutorial:
 
 ========================
-Transformations Tutorial
+Transform Tutorial
 ========================
 
-Like most graphics packages, Matplotlib relise on a transformation
+Like most graphics packages, Matplotlib relise on a transform
 framework to coordinate systems. This framework allows you to move 
 seamlessly between the *data*, *axes*, *figure*, *display* coordinate systems.
 While Marplotlib handles these transformations automatically for 95% of your
