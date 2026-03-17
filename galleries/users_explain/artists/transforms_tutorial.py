@@ -4,17 +4,17 @@
 .. _transforms_tutorial:
 
 ========================
-Transformations Tutorial
+Transform Tutorial
 ========================
 
-Like most graphics packages, Matplotlib relise on a transformation
+Like most graphics packages, Matplotlib relise on a transform
 framework to coordinate systems. This framework allows you to move 
 seamlessly between the *data*, *axes*, *figure*, *display* coordinate systems.
-While Marplotlib handles these transformations automatically for 95% of your
+While Marplotlib handles these transforms automatically for 95% of your
 plots, understanding the underlying objects is crucial when you need to push
 the limits of custom figure generation of create advanced designs
 (see :mod:`matplotlib.transforms`). The table below summarizes these
-coordinate systems and the corresponding transformation objects used to map
+coordinate systems and the corresponding transform objects used to map
 them to the *display* (pixel) coordinates. In this table, `ax` represents an
 :class:`~matplotlib.axes.Axes` instance, ``fig`` is a
 :class:`~matplotlib.figure.Figure` instance, and ``subfigure`` is a
