@@ -11,7 +11,7 @@ Like most graphics packages, Matplotlib relise on a transform
 framework to coordinate systems. This framework allows you to move 
 seamlessly between the *data*, *axes*, *figure*, *display* coordinate systems.
 While Marplotlib handles these transforms automatically for 95% of your
-plots, understanding the underlying objects is crucial when you need to push
+plots, Understanding the underlying objects is crucial when you need to push
 the limits of custom figure generation of create advanced designs
 (see :mod:`matplotlib.transforms`). The table below summarizes these
 coordinate systems and the corresponding transform objects used to map
