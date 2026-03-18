@@ -15,7 +15,7 @@ plots, understanding the underlying objects is crucial when you need to push
 the limits of custom figure generation of create advanced designs
 (see :mod:`matplotlib.transforms`). The table below summarizes these
 coordinate systems and the corresponding transformation objects used to map
-them to the *display* (pixel) coordinates. In this table, `ax` represents an
+them to the *display* (pixel) coordinates. In this table, ``ax`` represents an
 :class:`~matplotlib.axes.Axes` instance, ``fig`` is a
 :class:`~matplotlib.figure.Figure` instance, and ``subfigure`` is a
 :class:`~matplotlib.figure.SubFigure` instance.
