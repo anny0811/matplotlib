@@ -80,7 +80,7 @@ column because:
 - The naming conventions for transforms help keep track of the standard coordinate systems
 and their relationships.
 
-Inverting Transforms
+Inverting Transform
 --------------------
 - Transforms in Matplotlib can invert themselves using ``Transform.inverted()``.
 - Example:
