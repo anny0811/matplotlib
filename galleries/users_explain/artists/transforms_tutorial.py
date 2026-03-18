@@ -7,14 +7,14 @@
 Transform Tutorial
 ========================
 
-Like most graphics packages, Matplotlib relise on a transform
+Like most graphics packages, Matplotlib relies on a transform
 framework to coordinate systems. This framework allows you to move 
 seamlessly between the *data*, *axes*, *figure*, *display* coordinate systems.
-While Marplotlib handles these transformations automatically for 95% of your
+While Matplotlib handles these transforms automatically for 95% of your
 plots, understanding the underlying objects is crucial when you need to push
-the limits of custom figure generation of create advanced designs
+the limits of custom figure generation to create advanced designs
 (see :mod:`matplotlib.transforms`). The table below summarizes these
-coordinate systems and the corresponding transformation objects used to map
+coordinate systems and the corresponding transform objects used to map
 them to the *display* (pixel) coordinates. In this table, ``ax`` represents an
 :class:`~matplotlib.axes.Axes` instance, ``fig`` is a
 :class:`~matplotlib.figure.Figure` instance, and ``subfigure`` is a
@@ -83,7 +83,7 @@ coordinate systems and their relationships.
 
 Inverting Transforms
 --------------------
-- Transforms in Matplotlib can invert themselves using ``Transform.inverted()``.
+- Transform in Matplotlib can invert themselves using ``Transform.inverted()``.
 - Example:
 - ``ax.transData``
     Converts **data coordinates → display coordinates**.
